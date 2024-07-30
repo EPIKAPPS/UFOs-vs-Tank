@@ -1,0 +1,1036 @@
+
+<!--
+    THIS GAME MAY RUN SLOW IN OLD DEVICES.
+    
+    I HOPE YOU LIKE AND ENJOY.
+    
+    LEAVE IN THE COMMENTS SOME FEEDBACK.
+    
+    IF YOU'D LIKE YOU CAN ALSO SHARE YOU MAX
+    SCORE!
+
+
+    I'M NOT ENGLISH SPEAKER SO EXCUSE ME IF
+    MY STORY WAS NOT TOLD CORRECTLY. ACTUALLY,
+    I THANK YOU IF YOU CAN CORRECT ANY MISTAKE.
+-->
+
+<html>
+    <head>
+        <title>UFO King Alien</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                -webkit-user-select: none;
+                user-select: none;
+            }
+            #info{
+                width: 200px;
+                height: 300px;
+                position: absolute;
+                margin-top: -525px;
+                margin-left: 100px;
+                color: black;
+                display: none;
+                border-radius: 20px;
+                background: linear-gradient(white, lightgreen, white, lightgreen, white);
+            }
+
+            #canvas{
+                border: 1px solid green;
+                background: linear-gradient(white, lightgreen, lightgray, lightgreen, white);
+                margin-top: 1%;
+                border-radius: 10px;
+            }
+
+            table {
+                margin-top: -30px;
+            }
+
+            #life, #pts, #Max{
+                width: 100px;
+                font-weight: 400;
+                font-size: small;
+                text-shadow: 1px 1px black;
+            }
+            #red,#green,#blue, #Random {
+                margin-right: 20px;
+                font-weight: 400;
+                font-size: small;
+                text-shadow: 1px 1px black;
+            }
+            #boton {
+                font-size: medium;
+                font-weight: 900;
+                width: 100px;
+                height: 30px;
+                border-radius: 50px;
+                margin-top:  20px;
+                margin-bottom: 40px;
+                margin-left: 150px;
+                outline: none;
+                background: white;
+            }
+            #arB, #abB  {
+                font-size: xx-large;
+                font-weight: 900;
+                border-radius: 50px;
+                width: 60px;
+                height: 60px;
+                outline: none;
+                margin: -5px;
+                color: black;
+                background: white;
+            }
+
+            #deB, #izB {
+                font-size: xx-large;
+                font-weight: 900;
+                border-radius: 50px;
+                width: 60px;
+                height: 60px;
+                outline: none;
+                margin: -5px;
+                color: black;
+                background: white;
+            }
+
+            #shoot {
+                font-size: xx-large;
+                font-weight: 900;
+                border-radius: 50px;
+                width: 80px;
+                height: 60px;
+                margin-left: 300px;
+                margin-top: -140px;
+                outline: none;
+                color: black;
+                background: white;
+            }
+            #red{
+                color: red;
+            }
+            #green{
+                color: green;
+            }
+            #blue{
+                color: blue;
+            }
+            #label7,#label8,#label15,#label6 {
+                width: 250px;
+                outline: 1px solid black;
+                font-weight: 900;
+                font-size: xx-large;
+                text-align: left;
+                float: right;
+                margin-left: 600px;
+            }
+            #help {
+                position: absolute;
+                margin-left: -160px;
+                margin-top: -20px;
+                border-radius: 20px;
+                outline: none;
+                font-weight: 900;
+                font-size: small;
+                background: white;
+            }
+            #contextB {
+                border: 1px solid black;
+                position: relative;
+                margin-top: -550px;
+                width: 400px;
+                height: 560px;
+                border-radius: 20px;
+                background: linear-gradient(to right, black, darkslategray, black);
+                font-family: "Times New Roman";
+            }
+            #contextD {
+                position: absolute;
+                margin-top: -15px;
+                margin-left: 50px;
+                width: 300px;
+                height: 500px;
+                border-radius: 20px;
+                color: beige;
+                text-shadow: 1px 1px black;
+            }
+            .contextP {
+                margin-left: 5px;
+                outline: none;
+                font-weight: 900;
+                font-size: x-large;
+                text-align: justify;
+            }
+        </style>
+
+    </head>
+    <body>
+
+
+
+        <label> Change Color &nbsp;&nbsp;</label>
+        <label id="red">Red</label>
+        <label id="green">Green </label>
+        <label id="blue">Blue</label>
+        <label id="random">Random</label><br>
+        <canvas id="canvas" height="300" width="400"></canvas><br>
+
+        <button id="boton">Start</button>
+        <table >
+            <tbody>
+                <tr>
+                    <td></td> 
+                    <td ><button id="arB">⇧</button></td>
+                    <td></td>
+                </tr>
+            <td><button id="izB">⇦</button> </td>
+            <td></td>
+            <td ><button id="deB">⇨</button></td>
+            <tr>
+                <td></td>
+                <td ><button id="abB">⇩</button></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="shoot">⇯</button>
+    <div id="info">
+        <p>You can also use keys</p>
+        <p>Arrow keys to move, Spacebar to shoot, Enter to start/pause</p>
+        <p>Each 50 points a reward point is shown for 4 seconds</p>
+        <p>Yellow point = +10pts, Red point = Life++</p>
+        <p>Change Color Tank = Click or touch on top screen</p>
+    </div>
+    <button id="help">HELP</button>
+    <div id="contextB">
+        <div id="contextD">
+            <p class="contextP">
+                &nbsp;&nbsp;&nbsp;&nbsp;In the year 2018 the world was
+                attacked by an army of aliens,
+                they killed hundrends of people and destroyed some
+                of the main cities in the world. </p>
+            <p class="contextP">
+                &nbsp;&nbsp;&nbsp;&nbsp;Their spaceships were fast and
+                hard to destroy. Not many were ready to confront the
+                risk of fighting against this evil force. But a man with
+                extraordinary courage and abnegation decided to
+                start a endless fight by facing the most greatest 
+                adversity that anyone in the world have faced before
+                with only a tank.
+                Good luck soldier!
+            </p><p>Click or Touch</p>
+        </div>
+    </div>
+
+    <script>
+        var boton = document.getElementById("boton");
+        var help = document.getElementById("help");
+        var izB = document.getElementById("izB");
+        var deB = document.getElementById("deB");
+        var arB = document.getElementById("arB");
+        var abB = document.getElementById("abB");
+        var shoot = document.getElementById("shoot");
+
+
+        boton.addEventListener("click", iniciarParar);
+        help.addEventListener("click", helpF);
+
+
+        var bucle;
+        var estado = false;
+
+        var canvas = document.querySelector('#canvas');
+        var context = canvas.getContext('2d');
+
+        var red = document.getElementById("red");
+        var green = document.getElementById("green");
+        var blue = document.getElementById("blue");
+        var random = document.getElementById("random");
+
+        var keys = [];
+
+        var xPlayer = 200;
+        var yPlayer = 275;
+        var xMissile = 200;
+        var yMissile = 275;
+
+        var xLaser = 100;
+        var yLaser = 800;
+        var xEnemy1 = 100;
+        var yEnemy1 = -50;
+
+        var xStateEnemy = [];
+        var opindex;
+        var operator;
+
+        var rC = 0;
+        var rMC = 0;
+        var loseMC = 0;
+        var loseLiveMC = 0;
+        var life = 3;
+        var pts = 0;
+        var max = 0;
+        var couterPoints = 0;
+        var loseLife = 3;
+        var maxCounter = 0;
+
+        var colorSelector = ["blue", "lightblue", "green", "lightgreen", "red", "pink", "yellow", "lightyellow", "purple", "orange", "black", "gray", "lightgray", "white"];
+        var xColor1 = 3;
+        var xColor2 = 13;
+        var xColor3 = 2;
+
+        var yColor1 = 13;
+        var yColor2 = 12;
+        var yColor3 = 13;
+
+        var xposR;
+        var yposR;
+
+        var lifeBool = false;
+        var loseLiveB = false;
+        var pointsRewardBool = false;
+        var colorReward;
+        var pointsOrLife;
+        var loseBool = false;
+        var rewardObjectBool = false;
+
+        var a = false;
+        function helpF() {
+            if (!a) {
+                document.getElementById("info").style.display = "block";
+                a = true;
+                if (estado === true) {
+                    iniciarParar();
+                }
+            } else if (a) {
+                document.getElementById("info").style.display = "none";
+                a = false;
+            }
+        }
+
+        var contextD = document.getElementById("contextD");
+        var contextB = document.getElementById("contextB");
+        contextD.onclick = function () {
+            contextD.style.display = "none";
+            contextD.style.height = "none";
+            contextB.style.display = "none";
+            contextB.style.height = "none";
+        };
+
+        function DrawPlayer() {
+            //body
+            context.beginPath();
+            context.rect(xPlayer - 10, yPlayer, 20, 20);
+            var my_gradient2 = context.createLinearGradient(xPlayer - 10, yPlayer, xPlayer, yPlayer);
+            my_gradient2.addColorStop(0, colorSelector[1]);
+
+            colorSelector[0];
+            my_gradient2.addColorStop(0.3, colorSelector[xColor1]);
+            my_gradient2.addColorStop(0.5, colorSelector[xColor2]);
+            my_gradient2.addColorStop(0.7, colorSelector[xColor1]);
+            my_gradient2.addColorStop(1, colorSelector[xColor3]);
+
+
+            context.fillStyle = my_gradient2;
+            context.fillRect(xPlayer - 10, yPlayer, 20, 20);
+            context.stroke();
+
+            //left wheel
+            context.beginPath();
+            context.rect(xPlayer - 17, yPlayer, 7.5, 20);
+            context.fillStyle = "brown";
+            context.fillRect(xPlayer - 17, yPlayer, 7.5, 20);
+            context.stroke();
+
+            //right wheel            
+            context.beginPath();
+            context.rect(xPlayer + 9.5, yPlayer, 7.5, 20);
+            context.fillStyle = "brown";
+            context.fillRect(xPlayer + 9.5, yPlayer, 7.5, 20);
+            context.stroke();
+
+            //tank gun            
+            context.beginPath();
+            context.rect(xPlayer - 2.5, yPlayer - 20, 5, 25);
+            context.fillStyle = colorSelector[xColor3];
+            context.fillRect(xPlayer - 2.5, yPlayer - 20, 5, 25);
+            context.stroke();
+
+            //tank hatch        
+            context.beginPath();
+            context.arc(xPlayer, yPlayer + 7.5, 5, 0 * Math.PI, 2 * Math.PI);
+            context.fillStyle = colorSelector[xColor1];
+            context.fill();
+            context.stroke();
+        }
+
+        function DrawEnemy() {
+            //body
+            context.beginPath();
+            context.arc(xEnemy1, yEnemy1 + 7.5, 15, 0 * Math.PI, 2 * Math.PI);
+            var my_gradient = context.createRadialGradient(xEnemy1 - 10, yEnemy1, 2.5, xEnemy1 + 7.5, yEnemy1 + 2.5, 25);
+            my_gradient.addColorStop(0, colorSelector[yColor1]);
+            my_gradient.addColorStop(0.3, colorSelector[yColor2]);
+            my_gradient.addColorStop(0.5, colorSelector[yColor3]);
+            my_gradient.addColorStop(0.7, colorSelector[yColor2]);
+            my_gradient.addColorStop(1, colorSelector[yColor1]);
+            context.fillStyle = my_gradient;
+            context.fill();
+            context.stroke();
+
+            //tank gun            
+            context.beginPath();
+            context.rect(xEnemy1 - 12.5, yEnemy1 + 10, 2.5, 12.5);
+            context.fillStyle = "lightblue";
+            context.fillRect(xEnemy1 - 12.5, yEnemy1 + 10, 2.5, 12.5);
+            context.stroke();
+
+            //tank gun            
+            context.beginPath();
+            context.rect(xEnemy1 + 10, yEnemy1 + 10, 2.5, 12.5);
+            context.fillStyle = "lightblue";
+            context.fillRect(xEnemy1 + 10, yEnemy1 + 10, 2.5, 12.5);
+            context.stroke();
+
+            //tank hatch        
+            context.beginPath();
+            context.arc(xEnemy1, yEnemy1 + 7.5, 5, 0 * Math.PI, 2 * Math.PI);
+            context.fillStyle = "lightblue";
+            context.fill();
+            context.stroke();
+        }
+
+        function DrawMissile() {
+            context.beginPath();
+            context.rect(xMissile - 2, yMissile - 25, 4, 15);
+            context.fillStyle = "yellow";
+            context.fillRect(xMissile - 2, yMissile - 25, 4, 15);
+            context.stroke();
+        }
+
+        function DrawLaser() {
+            context.beginPath();
+            context.rect(xLaser - 12.5, yLaser + 10, 2.5, 5);
+            context.fillStyle = colorSelector[yColor1];
+            context.fillRect(xLaser - 12.5, yLaser + 10, 2.5, 5);
+            context.stroke();
+
+            context.beginPath();
+            context.rect(xLaser + 10, yLaser + 10, 2.5, 5);
+            context.fillStyle = colorSelector[yColor1];
+            context.fillRect(xLaser + 10, yLaser + 10, 2.5, 5);
+            context.stroke();
+        }
+
+        function dibujar() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            DrawMissile();
+            DrawPlayer();
+            if (rewardObjectBool) {
+                drawRewardObject();
+            }
+            if (loseBool) {
+                lose();
+            }
+            if (lifeBool) {
+                showLifeRewardMessage();
+            }
+            if (pointsRewardBool) {
+                showWonPoints();
+            }
+            if (loseLiveB) {
+                showLoseLife();
+            }
+            DrawEnemy();
+            DrawLaser();
+            showLife();
+            showPoints();
+            showMaxPoints();
+
+        }
+
+
+        function rewardCounter() {
+            rC++;
+        }
+        function rewardMessageCounter() {
+            rMC++;
+        }
+        function loseMessageCounter() {
+            loseMC++;
+        }
+        function loseMessageLiveCounter() {
+            loseLiveMC++;
+        }
+        var rewCount = false;
+        var rLiveMessCount = false;
+        var liveMessCount = false;
+        var rPointMessCount = false;
+        var loseMessCount = false;
+        function actualizar() {
+            if (rewCount) {
+                rewardCounter();
+                rewardObjectBool = true;
+            }
+            if (rC === 240) {
+                rewCount = false;
+                rewardObjectBool = false;
+                rC = 0;
+            }
+            if (rLiveMessCount) {
+                rewardMessageCounter();
+                lifeBool = true;
+            }
+            if (rMC === 120) {
+                lifeBool = false;
+                rLiveMessCount = false;
+                rMC = 0;
+            }
+            if (rPointMessCount) {
+                rewardMessageCounter();
+                pointsRewardBool = true;
+            }
+            if (rMC === 120) {
+                pointsRewardBool = false;
+                rPointMessCount = false;
+                rMC = 0;
+            }
+            if (loseMessCount) {
+                loseMessageCounter();
+                loseBool = true;
+            }
+            if (loseMC === 120) {
+                loseMessCount = false;
+                loseBool = false;
+                loseMC = 0;
+            }
+            if (liveMessCount) {
+                loseLiveB = true;
+                loseMessageLiveCounter();
+            }
+            if (loseLiveMC === 120) {
+                liveMessCount = false;
+                loseLiveB = false;
+                loseLiveMC = 0;
+            }
+            movePlayer();
+            enemyMove();
+            enemyShoot();
+            if (disparo) {
+                playerShoot();
+            }
+            if (izMove) {
+                izquierda();
+            }
+            if (deMove) {
+                derecha();
+            }
+            if (arMove) {
+                arriba();
+            }
+            if (abMove) {
+                abajo();
+            }
+            /*
+             xMis.innerHTML = "xMissile: " + xMissile;
+             yMis.innerHTML = "yMissile: " + yMissile;
+             xPl.innerHTML = "xPlayer: " + xPlayer;
+             yPl.innerHTML = "yPlayer: " + yPlayer;
+             */
+        }
+
+        function frame() {
+            actualizar();
+            dibujar();
+            bucle = requestAnimationFrame(frame);
+        }
+
+        function iniciarParar() {
+            if (!estado) {
+                estado = true;
+                frame();
+                document.getElementById("boton").innerHTML = "Pause";
+                if (a) {
+                    document.getElementById("info").style.display = "none";
+                    a = false;
+                }
+            } else {
+                estado = false;
+                cancelAnimationFrame(bucle);
+                document.getElementById("boton").innerHTML = "Start";
+            }
+        }
+
+        function updateMarkers() {
+            if (loseLife === 0) {
+                //alert(loseLife + couterPoints);
+                if (couterPoints > maxCounter) {
+                    maxCounter = couterPoints;
+                }
+                couterPoints = 0;
+                loseLife = 3;
+                xPlayer = 200;
+                yPlayer = 275;
+                yMissile = yPlayer;
+                xMissile = xPlayer;
+                loseMessCount = true;
+                xLaser = 100;
+                yLaser = 800;
+                xEnemy1 = 100;
+                yEnemy1 = -50;
+                xPlayer = 200;
+                yPlayer = 275;
+                xMissile = 200;
+                yMissile = 275;
+                yColor1 = 13;
+                yColor2 = 12;
+                yColor3 = 13;
+            }
+        }
+
+        function showLife() {
+            context.beginPath();
+            context.font = "15px Arial";
+            context.fillStyle = "rgba(255,0,0,0.3)";
+            context.textAlign = "center";
+            context.fillText("Lives: " + loseLife, 350, 25);
+        }
+
+        function showLoseLife() {
+            context.beginPath();
+            context.font = "15px Arial";
+            context.fillStyle = "rgba(255,0,0,0.3)";
+            context.textAlign = "center";
+            context.fillText("Lives: " + loseLife, 200, 180);
+        }
+
+
+
+        function showLifeRewardMessage() {
+            context.beginPath();
+            context.font = "15px Arial";
+            context.fillStyle = "rgba(255,0,0,0.3)";
+            context.textAlign = "center";
+            context.fillText("Lives +1", 200, 100);
+        }
+
+        function showPoints() {
+            context.beginPath();
+            context.font = "15px Arial";
+            context.fillStyle = "rgba(255,0,0,0.3)";
+            context.textAlign = "left";
+            context.fillText("Points: " + couterPoints, 20, 25);
+        }
+
+
+        function showWonPoints() {
+            context.beginPath();
+            context.font = "15px Arial";
+            context.fillStyle = "rgba(255,0,0,0.3)";
+            context.textAlign = "center";
+            context.fillText("Points +10", 200, 130);
+        }
+
+        function showMaxPoints() {
+            context.beginPath();
+            context.font = "15px Arial";
+            context.fillStyle = "rgba(255,0,0,0.3)";
+            context.textAlign = "left";
+            context.fillText("Max Points: " + maxCounter, 20, 40);
+
+        }
+
+
+        function lose() {
+            context.beginPath();
+            context.font = "15px Arial";
+            context.fillStyle = "red";
+            context.textAlign = "center";
+            context.fillText("You Lost!", canvas.width / 2, canvas.height / 2.2);
+            context.fillText("Max Score: " + maxCounter, canvas.width / 2, canvas.height / 1.5);
+        }
+
+
+        function showRewardPoints() {
+            context.beginPath();
+            context.font = "15px Arial";
+            context.fillStyle = "red";
+            context.textAlign = "center";
+            context.fillText("+10 Points!", canvas.width / 2, canvas.height / 3);
+        }
+
+        function randomReward() {
+            xposR = Math.floor((Math.random() * 375) + 15);
+            yposR = Math.floor((Math.random() * 275) + 15);
+            pointsOrLife = Math.floor((Math.random() * 10) + 1);
+            if (pointsOrLife <= 10 && pointsOrLife !== 5) {
+                colorReward = "yellow";
+            }
+            if (pointsOrLife === 5) {
+                colorReward = "red";
+            }
+        }
+
+
+        function drawRewardObject() {
+            context.beginPath();
+            context.arc(xposR, yposR, 5, 0 * Math.PI, 2 * Math.PI);
+            context.fillStyle = colorReward;
+            context.fill();
+            context.stroke();
+            if (xPlayer < xposR + 20 && xPlayer > xposR - 20 && yPlayer > yposR - 20 && yPlayer < yposR + 5) {
+                yposR = -50;
+
+                rewCount = false;
+                rC = 0;
+                if (colorReward === "yellow") {
+                    couterPoints += 10;
+                    rPointMessCount = true;
+                }
+                if (colorReward === "red") {
+                    loseLife++;
+                    rLiveMessCount = true;
+                }
+            }
+        }
+
+
+
+        function playerShoot() {
+            yMissile -= 7.5;
+            if (yMissile <= -50) {
+                yMissile = yPlayer;
+                xMissile = xPlayer;
+                disparo = false;
+            }
+
+            if (yMissile > yEnemy1 - 32.5 && yMissile < yEnemy1 + 32.5 && xMissile > xEnemy1 - 14 && xMissile < xEnemy1 + 14) {
+                couterPoints += 10;
+
+                yMissile = yPlayer;
+                xMissile = xPlayer;
+                yEnemy1 = -25;
+                xEnemy1 = Math.floor((Math.random() * 300) + 50);
+                disparo = false;
+                pts.innerHTML = "Points: " + couterPoints;
+                if (couterPoints % 50 === 0) {
+                    randomReward();
+                    rewCount = true;
+
+                }
+                yColor1 = Math.floor(Math.random() * 13);
+                yColor2 = Math.floor(Math.random() * 13);
+                yColor3 = Math.floor(Math.random() * 13);
+            }
+        }
+
+        function enemyMove() {
+            opindex = Math.floor((Math.random() * 50) + 1);
+            operator = xStateEnemy[opindex];
+            if (yEnemy1 < 25) {
+                yEnemy1 += 2.5;
+            }
+
+            switch (opindex) {
+                case 1, 10:
+                    for (var i = 0.1; i < 2; i += 0.1) {
+                        xEnemy1 += i;
+                    }
+
+
+                    break;
+                case 2, 20:
+                    for (var i = 0.1; i < 2; i += 0.1) {
+                        xEnemy1 -= i;
+                    }
+
+                    break;
+                case 3, 30:
+
+                    for (var i = 0.1; i < 1; i += 0.1) {
+                        yEnemy1 += i;
+                    }
+                    if (yEnemy1 > 100) {
+                        yEnemy1 = 100;
+                    }
+
+                    break;
+                case 4, 40:
+
+                    for (var i = 0.1; i < 1; i += 0.1) {
+                        yEnemy1 -= i;
+                    }
+                    if (yEnemy1 < 5) {
+                        yEnemy1 = 5;
+                    }
+                    break;
+
+                case 25:
+                    if (xEnemy1 < xPlayer) {
+                        for (var i = 0.1; i < 2; i += 0.1) {
+                            xEnemy1 += i;
+                        }
+                    }
+                    break;
+                case 50:
+                    if (xEnemy1 > xPlayer) {
+                        for (var i = 0.1; i < 2; i += 0.1) {
+                            xEnemy1 -= i;
+                        }
+                    }
+                    break;
+                    /*    case 35:
+                     if (xEnemy1 > xPlayer + 10) {
+                     for (var i = 0.1; i < 2; i += 0.1) {
+                     xEnemy1 += i;
+                     }
+                     }
+                     break;
+                     case 45:
+                     if (xEnemy1 < xPlayer - 10) {
+                     for (var i = 0.1; i < 2; i += 0.1) {
+                     xEnemy1 -= i;
+                     }
+                     }
+                     break;*/
+            }
+            if (xEnemy1 < 17.5) {
+                xEnemy1 = 17.5;
+            } else if (xEnemy1 > 380) {
+                xEnemy1 = 380;
+            }
+        }
+
+        function enemyShoot() {
+            yLaser += 5;
+            if (yLaser > 325) {
+                xLaser = xEnemy1;
+                yLaser = yEnemy1 + 10;
+            }
+            if (yLaser > yPlayer - 20 && yLaser < yPlayer + 20 && xLaser > xPlayer - 25 && xLaser < xPlayer + 25) {
+                loseLife--;
+                xLaser = xEnemy1;
+                yLaser = yEnemy1 + 10;
+                life.innerHTML = "Lives: " + loseLife;
+                updateMarkers();
+                liveMessCount = true;
+                if (yMissile <= -150 || yMissile === yPlayer) {
+                    DrawMissile();
+                    yMissile = yPlayer;
+                    xMissile = xPlayer;
+                }
+
+            }
+        }
+
+
+
+
+        red.addEventListener("click", function () {
+
+            xColor1 = 5;
+            xColor2 = 13;
+            xColor3 = 4;
+        });
+        green.addEventListener("click", function () {
+
+            xColor1 = 3;
+            xColor2 = 13;
+            xColor3 = 2;
+        });
+        blue.addEventListener("click", function () {
+            colorSelector[0] = "blue";
+            xColor1 = 1;
+            xColor2 = 13;
+            xColor3 = 0;
+        });
+        random.addEventListener("click", function () {
+            colorSelector[14] = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+            xColor1 = 13;
+            xColor2 = 13;
+            xColor3 = 14;
+        });
+
+
+
+
+        var disparo = false;
+        var izMove = false;
+        var deMove = false;
+        var arMove = false;
+        var abMove = false;
+        //alert(topC);
+        izB.addEventListener("touchstart", function () {
+            izMove = true;
+        });
+        izB.addEventListener("touchend", function () {
+            izMove = false;
+        });
+
+        deB.addEventListener("touchstart", function () {
+            deMove = true;
+        });
+        deB.addEventListener("touchend", function () {
+            deMove = false;
+        });
+
+        arB.addEventListener("touchstart", function () {
+            arMove = true;
+        });
+        arB.addEventListener("touchend", function () {
+            arMove = false;
+        });
+
+        abB.addEventListener("touchstart", function () {
+            abMove = true;
+        });
+        abB.addEventListener("touchend", function () {
+            abMove = false;
+        });
+
+        shoot.addEventListener("touchstart", function () {
+            disparo = true;
+        });
+
+
+        function derecha() {
+
+            xPlayer += 2;
+            if (yMissile == yPlayer) {
+                xMissile += 2;
+            }
+
+            if (xPlayer > canvas.width - 15) {
+                xPlayer = 384;
+                if (yMissile == yPlayer) {
+                    xMissile = 384;
+                }
+            }
+        }
+        function izquierda() {
+            xPlayer -= 2;
+            if (yMissile == yPlayer) {
+                xMissile -= 2;
+            }
+            if (xPlayer < 15) {
+                xPlayer = 15;
+                if (yMissile == yPlayer) {
+                    xMissile = 15;
+                }
+            }
+        }
+
+        function abajo() {
+            yPlayer += 2;
+            yMissile += 2;
+            if (yMissile < yPlayer) {
+                yMissile -= 2;
+            }
+            if (yPlayer > canvas.height - 20) {
+                yPlayer = 280;
+                if (yMissile > yPlayer) {
+                    yMissile = 280;
+                }
+            }
+        }
+
+        function arriba() {
+            yPlayer -= 2;
+            yMissile -= 2;
+            if (yMissile < yPlayer) {
+                yMissile += 2;
+            }
+            if (yPlayer < 0) {
+                yPlayer = 0;
+                if (yMissile < yPlayer) {
+                    yMissile = 0;
+                }
+            }
+        }
+
+
+
+        window.addEventListener("keydown", function (e) {
+            if (e.keyCode == 13) {
+                iniciarParar();
+            }
+        });
+
+
+
+
+        function movePlayer() {
+
+
+            if (keys[32]) {
+                disparo = true;
+            }
+
+            if (keys[39]) {//der
+                xPlayer += 2;
+                if (yMissile == yPlayer) {
+                    xMissile += 2;
+                }
+
+                if (xPlayer > canvas.width - 15) {
+                    xPlayer = 384;
+                    if (yMissile == yPlayer) {
+                        xMissile = 384;
+                    }
+                }
+            }
+            if (keys[37]) {//izq
+                xPlayer -= 2;
+                if (yMissile == yPlayer) {
+                    xMissile -= 2;
+                }
+                if (xPlayer < 15) {
+                    xPlayer = 15;
+                    if (yMissile == yPlayer) {
+                        xMissile = 15;
+                    }
+                }
+            }
+            if (keys[40]) {//abaj
+                yPlayer += 2;
+                yMissile += 2;
+                if (yMissile < yPlayer) {
+                    yMissile -= 2;
+                }
+                if (yPlayer > canvas.height - 20) {
+                    yPlayer = 280;
+                    if (yMissile > yPlayer) {
+                        yMissile = 280;
+                    }
+                }
+            }
+            if (keys[38]) {//arrib
+                yPlayer -= 2;
+                yMissile -= 2;
+                if (yMissile < yPlayer) {
+                    yMissile += 2;
+                }
+                if (yPlayer < 0) {
+                    yPlayer = 0;
+                    if (yMissile < yPlayer) {
+                        yMissile = 0;
+                    }
+                }
+            }
+        }
+
+        document.body.addEventListener("keydown", function (e) {
+            keys[e.keyCode] = true;
+            e.preventDefault();
+        });
+        document.body.addEventListener("keyup", function (e) {
+            keys[e.keyCode] = false;
+            e.preventDefault();
+        }
+        );
+
+    </script>
+</body>
+</html>
